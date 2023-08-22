@@ -1,0 +1,36 @@
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.26.7+k3s1 INSTALL_K3S_EXEC="server" sh -
+cat /etc/rancher/k3s/k3s.yaml
+
+sudo apt install certbot
+sudo certbot certonly --manual --preferred-challenges dns -d "*.rajesh-kumar.in"
+sudo -s
+mkdir certs
+cd certs/
+sudo cp -R /etc/letsencrypt/archive/rajesh-kumar.in .
+sudo mv rajesh-kumar.in/* .
+rm -rf rajesh-kumar.in/
+cd ../
+vim rancher-helm-values.yaml 
+mv fullchain1.pem tls.crt
+mv privkey1.pem tls.key
+kubectl create ns cattle-system
+kubectl create secret tls tls-nginx-ingres --cert=tls.crt --key=tls.key
+kubectl -n cattle-system get certificaterequest
+helm install rancher rancher-latest/rancher -n cattle-system -f rancher-helm-values.yaml --create-namespace
+vim rancher-certificate.yaml 
+kubectl create -f rancher-certificate.yaml 
+kubectl -n cattle-system get issuer
+kubectl -n cattle-system get certificate
+kubectl -n cattle-system get order
+kubectl -n cattle-system get certificaterequest
+helm install rancher rancher-latest/rancher -n cattle-system -f rancher-helm-values.yaml --create-namespace
+kubectl -n cattle-system get secret
+kubectl -n cattle-system get pods
+kubectl -n cattle-system get secret
+kubectl -n cattle-system describe secret tls-rancher-ingress
+kubectl -n cattle-system get pods
+cd ../
+helm upgrade --install rancher rancher-latest/rancher -n cattle-system -f rancher-helm-values.yaml --create-namespace
+kubectl -n cattle-system describe ing
+kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}'
+echo https://rancher.rajesh-kumar.in/dashboard/?setup=$(kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}')
