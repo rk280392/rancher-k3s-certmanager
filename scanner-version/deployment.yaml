@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cvedb-version-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cvedb-version-exporter
+  template:
+    metadata:
+      labels:
+        app: cvedb-version-exporter
+    spec:
+      containers:
+        - name: cvedb-version-exporter
+          image: rk90229/nv-cvedb-checker:0.0.1
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cvedb-version-exporter
+spec:
+  selector:
+    app: cvedb-version-exporter   # Match labels with your Deployment
+  ports:
+    - protocol: TCP
+      port: 8082           # Port your exporter is listening on inside the pod
+      targetPort: 8082     # Port your exporter is listening on inside the pod
+  type: NodePort           # Expose the service via a NodePort
+

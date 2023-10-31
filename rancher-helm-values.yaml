@@ -69,8 +69,8 @@ ingress:
 
   tls:
     # options: rancher, letsEncrypt, secret
-    source: secret
-    secretName: tls-rancher-ingress
+    source: letsEncrypt
+    secretName: tls-rancher-ingress-new
 
 ### service ###
 # Override to use NodePort or LoadBalancer service type - default is ClusterIP
@@ -82,8 +82,8 @@ service:
 # ProTip: The production environment only allows you to register a name 5 times a week.
 #         Use staging until you have your config right.
 letsEncrypt:
-  email: ""
-  environment: staging
+  email: "rk90229@gmail.com"
+  environment: production
   ingress:
     # options: traefik, nginx
     class: "traefik"

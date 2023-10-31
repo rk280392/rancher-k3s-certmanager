@@ -1,0 +1,75 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: opni-dashboard
+  name: opni-dashboard
+  namespace: opni
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: opni-dashboard.rajesh-kumar.in
+    http:
+      paths:
+      - backend:
+          service:
+            name: opni-admin-dashboard 
+            port:
+              number: 12080
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - opni-dashboard.rajesh-kumar.in
+    secretName: cattle-system.tls-rancher-ingress
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+  namespace: opni
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: grafana.rajesh-kumar.in
+    http:
+      paths:
+      - backend:
+          service:
+            name: opni-grafana
+            port:
+              number: 80
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - grafana.rajesh-kumar.in
+    secretName: cattle-system.tls-rancher-ingress
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: opensearch
+  namespace: opni
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: opensearch.rajesh-kumar.in
+    http:
+      paths:
+      - backend:
+          service:
+            name: opni-opensearch-svc-dashboards
+            port:
+              number: 5601
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - opensearch.rajesh-kumar.in
+    secretName: cattle-system.tls-rancher-ingress

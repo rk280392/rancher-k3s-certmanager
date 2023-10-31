@@ -1,0 +1,17 @@
+apiVersion: management.cattle.io/v3
+context: project
+displayName: nv-enable-proxy 
+kind: RoleTemplate
+metadata:
+  name: nv-service-proxy
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - services/proxy
+  resourceNames:
+  - https://neuvector-service-webui:8443
+  verbs:
+  - get
+  - create
+  - patch

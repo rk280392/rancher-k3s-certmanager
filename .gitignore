@@ -1,2 +1,8 @@
 password.txt
+practice-cluster.yaml
+local-cluster.yaml
+.nv-api.key
+k3s-config.yaml
+keycloak/grafan-keycloak.ini
+keycloak/keycloak-settings.txt
 certs/

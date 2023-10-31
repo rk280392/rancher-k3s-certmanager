@@ -1,0 +1,21 @@
+apiVersion: management.cattle.io/v3
+context: project
+displayName: nv-readonly
+external: false
+hidden: false
+kind: RoleTemplate
+metadata:
+  name: rajesh-nv-readonly
+rules:
+  - apiGroups:
+      - read-only.neuvector.api.io
+    resources:
+      - '*'
+    verbs:
+      - get
+  - apiGroups:
+      - neuvector.com
+    resources:
+      - '*'
+    verbs:
+      - get
