@@ -22,7 +22,11 @@ spec:
       - name: "manager.svc.type"
         value: ClusterIP
       - name: "manager.env.ssl"
-        value: "false"
+        value: "true"
+      - name: "controller.apisvc.type"
+        value: ClusterIP
+      - name: "controller.federation.mastersvc.type"
+        value: ClusterIP
   syncPolicy:
     automated:
       prune: true
