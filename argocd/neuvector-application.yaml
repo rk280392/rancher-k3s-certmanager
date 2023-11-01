@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: neuvector
+spec:
+  project: default
+  destination:
+    namespace: cattle-neuvector-system
+    server: https://kubernetes.default.svc
+  source:
+    chart: core
+    repoURL: https://neuvector.github.io/neuvector-helm/
+    targetRevision: 2.6.4
+    helm:
+      parameters:
+      - name: "k3s.enabled"
+        value: "true"
+      - name: "global.cattle.url"
+        value: https://rancher.rajesh-kumar.in
+      - name: "controller.ranchersso.enabled" 
+        value: "true"
+      - name: "manager.svc.type"
+        value: ClusterIP
+      - name: "manager.env.ssl"
+        value: "false"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true
+
+
+      #- name: "manager.ingress.host"
+      #  value: nv.rajesh-kumar.in
+      #- name: "manager.ingress.enabled"
+      #  value: "true"
+      #- name: "manager.ingress.ingressClassName"
+      #  value: traefik
+      #- name: "manager.ingress.tls" 
+      #  value: "true"
+      #- name: "manager.ingress.secretName" 
+      #  value: nv-tls-ingress

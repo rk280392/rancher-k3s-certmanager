@@ -1,0 +1,37 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-nv
+  namespace: cattle-neuvector-system
+spec:
+  acme:
+    #server: https://acme-v02.api.letsencrypt.org/directory
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: rk90229@gmail.com
+    privateKeySecretRef:
+      name: pvt-nv-ingress 
+    solvers:
+    - http01:
+        ingress:
+          class: traefik
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nv-ingressroute
+  namespace: cattle-neuvector-system
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`nv.rajesh-kumar.in`)
+    kind: Rule
+    services:
+    - name: neuvector-service-webui
+      port: 8443
+      scheme: https
+  tls:
+    secretName: nv-tls-ingress
+
