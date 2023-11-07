@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-node-exporter
+  namespace: argo
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  labels:
+    release: kube-prometheus-stack
+spec:
+  destination:
+    name: in-cluster
+    namespace: argo
+  project: default
+  source:
+    repoURL: 'https://prometheus-community.github.io/helm-charts'
+    targetRevision: 4.23.2
+    helm:
+      values: |-
+        hostRootFsMount:
+          enabled: false
+    chart: prometheus-node-exporter
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
