@@ -3,8 +3,6 @@ practice-cluster.yaml
 local-cluster.yaml
 .nv-api.key
 k3s-config.yaml
-keycloak/grafan-keycloak.ini
-keycloak/keycloak-settings.txt
 certs/
 aws-route53-creds.yaml
 wildcard-tls-secret.yaml
