@@ -44,6 +44,11 @@ spec:
                 scrape_timeout: 10s
                 static_configs:
                   - targets: ['kube-prometheus-stack-kube-state-metrics.prometheus.svc.cluster.local:8080']
+              - job_name: 'NeuVector'
+                scrape_interval: 30s
+                scrape_timeout: 10s
+                static_configs:
+                  - targets: ['neuvector-prometheus-exporter.cattle-neuvector-system.svc.cluster.local:8068']
         alertmanager:
           enabled: true
         nodeExporter:
