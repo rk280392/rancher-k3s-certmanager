@@ -18,6 +18,8 @@ spec:
         value: keycloak-creds-secret
       - name: "passwordSecretKey"
         value: keycloakPassword
+      - name: "metrics.enabled"
+        value: true
   syncPolicy:
     automated:
       prune: true
