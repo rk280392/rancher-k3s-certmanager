@@ -28,3 +28,15 @@ configs:
       g, rajesh-personal-account:devops, role:devops-role
     policy.default: role:readonly
     scopes: '[groups]'
+
+redis:
+  exporter:
+    enabled: true
+  metrics:
+    enabled: true
+server:
+  metrics:
+    enabled: true
+controller:
+  metrics:
+    enabled: true
