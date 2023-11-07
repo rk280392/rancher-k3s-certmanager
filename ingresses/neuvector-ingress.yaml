@@ -1,20 +1,12 @@
-apiVersion: cert-manager.io/v1
-kind: Issuer
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
 metadata:
-  name: letsencrypt-nv
+  name: stripprefix
   namespace: cattle-neuvector-system
 spec:
-  acme:
-    #server: https://acme-v02.api.letsencrypt.org/directory
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
-    email: rk90229@gmail.com
-    privateKeySecretRef:
-      name: pvt-nv-ingress 
-    solvers:
-    - http01:
-        ingress:
-          class: traefik
-
+  replacePathRegex:
+    regex: /fedmanaged:443\/*(.*)
+    replacement: /$1
 ---
 
 apiVersion: traefik.containo.us/v1alpha1
@@ -32,6 +24,15 @@ spec:
     - name: neuvector-service-webui
       port: 8443
       scheme: https
+  - match: Host(`nv.rajesh-kumar.in`) && PathPrefix(`/fedmanaged`)
+    kind: Rule
+    services:
+      - name: neuvector-svc-controller-fed-master
+        passHostHeader: true
+        port: 11443
+        scheme: https
+    middlewares:
+      - name: stripprefix
   tls:
-    secretName: nv-tls-ingress
+    secretName: rancher-tls-cert
 

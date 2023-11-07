@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: argo
+  namespace: argo
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`argo-dashboard.rajesh-kumar.in`)
+    kind: Rule
+    services:
+    - name: argo-argocd-server
+      port: 443
+      scheme: https
+  tls:
+    secretName: rancher-tls-cert
+

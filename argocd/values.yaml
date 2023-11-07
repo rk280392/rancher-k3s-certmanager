@@ -1,0 +1,30 @@
+crds:
+  install: true
+configs:
+  cm:
+    url: https://argo-dashboard.rajesh-kumar.in
+    dex.config: |
+      connectors:
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: $dex-creds-secret:clientID
+          clientSecret: $dex-creds-secret:clientSecret
+          orgs:
+          - name: rajesh-personal-account
+  rbac:
+    create: true
+    policy.csv: |
+      p, role:devops-role, applications, create, */*, allow
+      p, role:devops-role, applications, delete, */*, allow
+      p, role:devops-role, applications, get, */*, allow
+      p, role:devops-role, applications, override, */*, allow
+      p, role:devops-role, applications, sync, */*, allow
+      p, role:devops-role, applications, update, */*, allow
+      p, role:devops-role, repositories, create, *, allow
+      p, role:devops-role, repositories, update, *, allow
+      p, role:devops-role, repositories, delete, *, allow
+      g, rajesh-personal-account:devops, role:devops-role
+    policy.default: role:readonly
+    scopes: '[groups]'

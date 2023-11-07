@@ -1,0 +1,14 @@
+hostname: rancher.rajesh-kumar.in
+ingress:
+  enabled: false
+  ingressClassName: "traefik"
+  servicePort: 80
+  tls: {}
+letsEncrypt:
+  email: ""
+  environment:
+  ingress:
+    class: ""
+replicas: 3
+tls: external
+bootstrapPassword: "qwerty123"
