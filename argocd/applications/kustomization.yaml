@@ -7,3 +7,4 @@ resources:
 - node-exporter/application.yaml
 - grafana-dashboards/argo-cd.yaml
 - keycloak/keycloak.yaml
+- keycloak/keycloak-external-secret.yaml
