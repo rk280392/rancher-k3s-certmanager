@@ -55,6 +55,15 @@ spec:
           enabled: false
         grafana:
           defaultDashboardsEnabled: false
+          ingress:
+            enabled: true
+            ingressClassName: traefik
+            hosts:
+              - grafana.rajesh-kumar.in
+            tls:
+              - secretName: rancher-tls-cert 
+                hosts:
+                  - grafana.rajesh-kumar.in
     chart: kube-prometheus-stack
   syncPolicy:
     automated:
