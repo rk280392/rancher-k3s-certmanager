@@ -11,7 +11,7 @@ spec:
   source:
     chart: keycloak
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: 13.2.1 
+    targetRevision: 17.3.0 
     helm:
       parameters:
       - name: "auth.existingSecret"
