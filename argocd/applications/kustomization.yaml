@@ -6,5 +6,4 @@ resources:
 - prometheus/application.yaml
 - node-exporter/application.yaml
 - grafana-dashboards/argo-cd.yaml
-- guestbook/guestbook-application.yaml
 - keycloak/keycloak-application.yaml
