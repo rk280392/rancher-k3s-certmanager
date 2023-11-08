@@ -55,6 +55,11 @@ spec:
           enabled: false
         grafana:
           defaultDashboardsEnabled: false
+          defaultDashboardsTimezone: browser
+          admin:
+            existingSecret: grafana-creds-secret
+            userKey: grafanaAdminUser 
+            passwordKey: grafanaAdminPass
           ingress:
             enabled: true
             ingressClassName: traefik

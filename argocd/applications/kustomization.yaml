@@ -8,3 +8,4 @@ resources:
 - grafana-dashboards/argo-cd.yaml
 - keycloak/keycloak.yaml
 - keycloak/keycloak-external-secret.yaml
+- prometheus/grafana-external-secret.yaml
