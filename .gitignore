@@ -9,3 +9,4 @@ wildcard-tls-secret.yaml
 .creds
 vaults/
 rancher-tls-secret.yaml
+argocd/applications/neuvector/nv-initcfg.yaml
