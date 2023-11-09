@@ -46,6 +46,8 @@ spec:
         value: "true"
       - name: "serviceMonitor.enabled"
         value: "true"
+      - name: "serviceMonitor.namespace"
+        value: "prometheus"
   syncPolicy:
     automated:
       prune: true

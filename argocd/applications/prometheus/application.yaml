@@ -54,6 +54,12 @@ spec:
                 scrape_timeout: 10s
                 static_configs:
                   - targets: ['keycloack-keycloak-metrics.keycloak.svc.cluster.local:8080']
+              - job_name: 'Keycloak-realm'
+                scrape_interval: 30s
+                scrape_timeout: 10s
+                static_configs:
+                  - targets: ['keycloack-keycloak-metrics.keycloak.svc.cluster.local:8080']
+                metrics_path: '/realms/master/metrics'
         alertmanager:
           enabled: true
         nodeExporter:
