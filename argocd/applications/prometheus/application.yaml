@@ -65,6 +65,23 @@ spec:
         nodeExporter:
           enabled: false
         grafana:
+          env:
+            GF_AUTH_GITHUB_ENABLED: "true"
+            GF_USERS_ALLOW_SIGN_UP: "false"
+            GF_AUTH_GITHUB_ALLOW_SIGN_UP: "true"
+            GF_AUTH_GITHUB_ALLOWED_ORGANIZATIONS: "rajesh-personal-account"
+          envValueFrom:
+            GF_AUTH_GITHUB_CLIENT_ID:
+              secretKeyRef:
+                name: grafana-creds-secret
+                key: client_id
+            GF_AUTH_GITHUB_CLIENT_SECRET:
+              secretKeyRef:
+                name: grafana-creds-secret
+                key: client_secret
+          grafana.ini:
+            server:
+              root_url: "https://grafana.rajesh-kumar.in"
           defaultDashboardsEnabled: false
           defaultDashboardsTimezone: browser
           admin:

@@ -6,6 +6,4 @@ resources:
 - prometheus/application.yaml
 - node-exporter/application.yaml
 - grafana-dashboards/argo-cd.yaml
-- keycloak/keycloak.yaml
-- keycloak/keycloak-external-secret.yaml
 - prometheus/grafana-external-secret.yaml
