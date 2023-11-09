@@ -49,6 +49,11 @@ spec:
                 scrape_timeout: 10s
                 static_configs:
                   - targets: ['neuvector-prometheus-exporter.cattle-neuvector-system.svc.cluster.local:8068']
+              - job_name: 'Keycloak'
+                scrape_interval: 30s
+                scrape_timeout: 10s
+                static_configs:
+                  - targets: ['keycloack-keycloak-metrics.keycloak.svc.cluster.local:8080']
         alertmanager:
           enabled: true
         nodeExporter:
