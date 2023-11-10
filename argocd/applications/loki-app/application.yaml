@@ -21,6 +21,8 @@ spec:
     helm:
       values: |-
         fullnameOverride: loki
+        storage:
+          type: filesystem
         ingress:
           enabled: true
           ingressClassName: "traefik"
