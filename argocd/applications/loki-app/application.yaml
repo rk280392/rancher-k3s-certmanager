@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki
+  namespace: argo
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  labels:
+    release: loki
+spec:
+  destination:
+    name: in-cluster
+    namespace: prometheus
+  project: default
+  source:
+    repoURL: 'https://grafana.github.io/helm-charts'
+    targetRevision: 5.36.3
+    helm:
+      values: |-
+        ingress:
+          enabled: true
+          ingressClassName: "traefik"
+          hosts:
+            - loki.rajesh-kumar.in
+          tls:
+          - hosts:
+            - loki.rajesh-kumar.in
+            secretName: rancher-tls-cert 
+    chart: loki
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
