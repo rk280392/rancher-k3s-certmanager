@@ -7,3 +7,4 @@ resources:
 - node-exporter/application.yaml
 - grafana-dashboards/argo-cd.yaml
 - prometheus/grafana-external-secret.yaml
+- loki-app/application.yaml

@@ -1,4 +1,4 @@
-### deploy argocd
+### dDeploy argocd
 
 $ kubectl create ns argocd
 
