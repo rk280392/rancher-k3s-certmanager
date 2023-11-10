@@ -82,7 +82,7 @@ spec:
           grafana.ini:
             server:
               root_url: "https://grafana.rajesh-kumar.in"
-          defaultDashboardsEnabled: false
+          defaultDashboardsEnabled: true
           defaultDashboardsTimezone: browser
           admin:
             existingSecret: grafana-creds-secret

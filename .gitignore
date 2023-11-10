@@ -10,3 +10,6 @@ wildcard-tls-secret.yaml
 vaults/
 rancher-tls-secret.yaml
 argocd/applications/neuvector/nv-initcfg.yaml
+s3-user_accessKeys.csv
+ssm-k8s-argocd_accessKeys.csv
+
