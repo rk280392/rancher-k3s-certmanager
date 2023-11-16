@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: neuvector-monitor
+  namespace: argo
+spec:
+  project: default
+  destination:
+    namespace: cattle-neuvector-system
+    server: https://kubernetes.default.svc
+  source:
+    chart: monitor
+    repoURL: https://neuvector.github.io/neuvector-helm/
+    targetRevision: 2.6.5
+    helm:
+      parameters:
+      - name: "ctrlSercretName"
+        value: nv-exporter-secret 
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true
+

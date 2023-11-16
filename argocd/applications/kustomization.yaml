@@ -8,3 +8,4 @@ resources:
 - grafana-dashboards/argo-cd.yaml
 - prometheus/grafana-external-secret.yaml
 - loki-app/application.yaml
+- neuvector/nv-monitor/nv-monitor-app.yaml
