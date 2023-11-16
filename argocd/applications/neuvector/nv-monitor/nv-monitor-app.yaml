@@ -14,7 +14,7 @@ spec:
     targetRevision: 2.6.5
     helm:
       parameters:
-      - name: "ctrlSercretName"
+      - name: "exporter.ctrlSercretName"
         value: nv-exporter-secret 
   syncPolicy:
     automated:
