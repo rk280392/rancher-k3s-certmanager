@@ -16,6 +16,8 @@ spec:
       parameters:
       - name: "exporter.ctrlSercretName"
         value: "nv-exporter-secret" 
+      - name: "exporter.grafanaDashboard.enabled"
+        value: "true" 
   syncPolicy:
     automated:
       prune: true
