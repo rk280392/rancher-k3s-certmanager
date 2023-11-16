@@ -9,3 +9,4 @@ resources:
 - prometheus/grafana-external-secret.yaml
 - loki-app/application.yaml
 - neuvector/nv-monitor/nv-monitor-app.yaml
+- neuvector/neuvector-application.yaml
