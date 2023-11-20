@@ -5,7 +5,6 @@ metadata:
   namespace: argo
   annotations:
     argocd.argoproj.io/sync-wave: "3"
-    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: "argocd-alerts"
   labels:
     release: kube-prometheus-stack
 spec:
