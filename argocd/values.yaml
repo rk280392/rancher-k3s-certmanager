@@ -40,3 +40,12 @@ server:
 controller:
   metrics:
     enabled: true
+notifications:
+  secret:
+    create: false
+  metrics:
+    enabled: true
+  notifiers:
+    service.slack: |
+      token: $slack-token
+

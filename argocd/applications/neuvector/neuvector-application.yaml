@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: neuvector
   namespace: argo
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: "argocd-alerts"
 spec:
   project: default
   destination:
