@@ -5,11 +5,14 @@ metadata:
   namespace: prometheus
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
   - match: Host(`thanos.rajesh-kumar.in`)  && PathPrefix(`/api/v1/receive`)
     kind: Rule
     services:
     - name: thanos-receive
       port: 19291
+  tls:
+    secretName: rancher-tls-cert
+
 

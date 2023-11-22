@@ -12,3 +12,5 @@ resources:
 - neuvector/nv-external-secret-app.yaml
 - neuvector/nv-monitor/nv-monitor-app.yaml
 - neuvector/nv-monitor/nvMonitor-external-secret-app.yaml
+- thanos/application.yaml
+- thanos/thanos-external-secret-app.yaml
