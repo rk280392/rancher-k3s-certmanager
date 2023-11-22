@@ -18,6 +18,14 @@ spec:
         value: "true"
       - name: "existingObjstoreSecret"
         value: "thanos-obj-secret"
+      - name: "receive.ingress.enabled"
+        value: "true"
+      - name: "receive.ingress.hostname"
+        value: "https://thanos.rajesh-kumar.in"
+      - name: "receive.ingress.secrets"
+        value: "rancher-tls-cert"
+      - name: "receive.ingress.path"
+        value: "/api/v1/receive"
   syncPolicy:
     automated:
       prune: true
