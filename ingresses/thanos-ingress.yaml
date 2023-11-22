@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: thanos-ingressroute
+  namespace: prometheus
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`thanos.rajesh-kumar.in`)  && PathPrefix(`/api/v1/receive`)
+    kind: Rule
+    services:
+    - name: thanos-receive
+      port: 19291
+

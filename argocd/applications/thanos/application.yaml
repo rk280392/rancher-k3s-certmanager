@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: thanos
+  namespace: argo
+spec:
+  project: default
+  destination:
+    namespace: prometheus
+    server: https://kubernetes.default.svc
+  source:
+    chart: thanos
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 12.16.1
+    helm:
+      parameters:
+      - name: "receive.enabled"
+        value: "true"
+      - name: "existingObjstoreSecret"
+        value: "thanos-obj-secret"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true
+
