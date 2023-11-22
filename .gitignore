@@ -1,6 +1,5 @@
 password.txt
-practice-cluster.yaml
-local-cluster.yaml
+kubeconfigs/
 .nv-api.key
 k3s-config.yaml
 certs/
