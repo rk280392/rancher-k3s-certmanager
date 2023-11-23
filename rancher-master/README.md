@@ -31,3 +31,13 @@ Steps:
 - kubectl apply -f vaults/vaultTokenSecret.yaml
 - kubectl apply -f ingresses/vault-ingress.yaml
 - kubectl apply -f clusterSecretStore.yaml
+
+Deploy Argo in master and add practice cluster to deploy apps in practice cluster. See argocd/README.
+
+To add monitoring:
+
+- Deploy monitoring through UI 
+	- Disable grafana
+	- Add remoteWrite configs
+	- Add additionalScrapeConfig to scrape argo
+- create Thanos receive secret to push prometheus scrapes to central Thanos deployed in practice cluster. See home-cluster/prom-thanos-receive-demo.yaml.
