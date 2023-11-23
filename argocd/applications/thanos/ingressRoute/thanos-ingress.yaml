@@ -25,6 +25,13 @@ spec:
       port: 19291
     middlewares:
     - name: thanos-receive-auth
+  - match: Host(`thanos.rajesh-kumar.in`)  && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: thanos-query-frontend
+      port: 9090
+    middlewares:
+    - name: thanos-receive-auth
   tls:
     secretName: rancher-tls-cert
 
