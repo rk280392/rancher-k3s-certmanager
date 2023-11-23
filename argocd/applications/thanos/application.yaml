@@ -18,6 +18,8 @@ spec:
         value: "true"
       - name: "existingObjstoreSecret"
         value: "thanos-obj-secret"
+      - name: "metrics.enabled"
+        value: "true"
   syncPolicy:
     automated:
       prune: true
