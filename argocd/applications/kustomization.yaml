@@ -14,3 +14,4 @@ resources:
 - neuvector/nv-monitor/nvMonitor-external-secret-app.yaml
 - thanos/application.yaml
 - thanos/thanos-external-secret-app.yaml
+- neuvector/nv-ingressRoute-app.yaml
