@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  thanos_receive_pass: djmodfhvroewj1
+  thanos_receive_user: sjvdojdokv
+immutable: false
+kind: Secret
+metadata:
+  name: thanos-receive-secret
+type: Opaque
+

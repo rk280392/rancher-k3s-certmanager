@@ -11,6 +11,6 @@ rancher-tls-secret.yaml
 s3-user_accessKeys.csv
 ssm-k8s-argocd_accessKeys.csv
 argocd/applications/thanos/htpassword
-home-cluster
+home-cluster/prom-thanos-receive.yaml
 rancher-master/argocd-multi-rancher-cluster-secret.yaml
 
