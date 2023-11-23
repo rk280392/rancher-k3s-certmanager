@@ -9,7 +9,7 @@ metadata:
     release: kube-prometheus-stack
 spec:
   destination:
-    name: in-cluster
+    name: practice-cluster
     namespace: prometheus
   project: default
   source:

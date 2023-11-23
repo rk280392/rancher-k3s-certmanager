@@ -13,7 +13,7 @@ metadata:
 spec:
   destination:
     namespace: argo
-    server: https://kubernetes.default.svc
+    name: practice-cluster
   project: default
   source:
     path: argocd/applications

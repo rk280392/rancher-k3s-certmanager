@@ -9,7 +9,7 @@ metadata:
     release: loki
 spec:
   destination:
-    name: in-cluster
+    name: practice-cluster
     namespace: prometheus
   project: default
   source:
