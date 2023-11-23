@@ -13,7 +13,7 @@ metadata:
 spec:
   destination:
     namespace: argo
-    name: practice-cluster
+    name: in-cluster
   project: default
   source:
     path: argocd/applications

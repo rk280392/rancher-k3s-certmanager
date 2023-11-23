@@ -23,7 +23,7 @@ Steps:
 - kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}'
 - echo https://rancher.rajesh-kumar.in/dashboard/?setup=$(kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}')
 - kubectl apply -f ingresses/rancher-ingress.yaml
-- kubectl -n cert-manager get secret rancher-tls-cert -o yaml | yq 'del(.metadata.creationTimestamp, .metadata.uid, .metadata.resourceVersion, .metadata.namespace)' | kubectl apply -n cattle-system -f -
+- kubectl -n cert-manager get secret rancher-tls-cert -o yaml | yq 'del(.metadata.creationTimestamp, .metadata.resourceVersion, .metadata.selfLink, .metadata.uid, .metadata.managedFields, .metadata.namespace, .metadata.annotations)' | kubectl apply -n cattle-system -f -
 - helm repo add hashicorp https://helm.releases.hashicorp.com
 - helm install vault hashicorp/vault
 - kubectl exec -it vault-0 vault operator init
