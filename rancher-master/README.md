@@ -40,4 +40,4 @@ To add monitoring:
 	- Disable grafana
 	- Add remoteWrite configs
 	- Add additionalScrapeConfig to scrape argo
-- create Thanos receive secret to push prometheus scrapes to central Thanos deployed in practice cluster. See home-cluster/prom-thanos-receive-demo.yaml.
+- create Thanos receive secret to push prometheus scrapes to central Thanos server. See home-cluster/prom-thanos-receive-demo.yaml.

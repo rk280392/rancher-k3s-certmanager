@@ -7,7 +7,7 @@ spec:
   project: default
   destination:
     namespace: prometheus
-    name: practice-cluster
+    name: in-cluster
   source:
     repoURL: https://github.com/rk280392/rancher-k3s-certmanager.git
     path: argocd/applications/thanos/ingressRoute

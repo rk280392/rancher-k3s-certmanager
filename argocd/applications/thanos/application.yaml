@@ -7,7 +7,7 @@ spec:
   project: default
   destination:
     namespace: prometheus
-    name: practice-cluster
+    name: in-cluster
   source:
     chart: thanos
     repoURL: https://charts.bitnami.com/bitnami
