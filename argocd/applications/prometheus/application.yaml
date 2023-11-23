@@ -22,6 +22,13 @@ spec:
           prometheusSpec:
             remoteWrite:
               - url: https://thanos.rajesh-kumar.in/api/v1/receive
+                basicAuth:
+                  username:
+                    name: grafana-creds-secret
+                    key: thanos_receive_user
+                  password:
+                    name: grafana-creds-secret
+                    key: thanos_receive_pass
             serviceMonitorSelector:
               matchLabels:
                 prometheus: argo-cd-grafana
