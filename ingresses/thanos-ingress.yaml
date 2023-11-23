@@ -1,4 +1,15 @@
 apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: thanos-receive-auth
+  namespace: prometheus
+spec:
+  basicAuth:
+    secret: "thanos-receive-auth-secret"
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: thanos-ingressroute
@@ -12,6 +23,8 @@ spec:
     services:
     - name: thanos-receive
       port: 19291
+    middlewares:
+    - name: thanos-receive-auth
   tls:
     secretName: rancher-tls-cert
 
