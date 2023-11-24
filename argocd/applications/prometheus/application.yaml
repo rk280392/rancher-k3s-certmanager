@@ -36,13 +36,31 @@ spec:
                 scrape_interval: 30s
                 scrape_timeout: 10s
                 static_configs:
-                  - targets: ['alertmanager-operated.prometheus.svc.cluster.local:9093','prometheus-node-exporter.prometheus.svc.cluster.local:9100','kube-prometheus-stack-kube-state-metrics.prometheus.svc.cluster.local:8080','neuvector-prometheus-exporter.cattle-neuvector-system.svc.cluster.local:8068']
+                  - targets: ['neuvector-prometheus-exporter.cattle-neuvector-system.svc.cluster.local:8068']
                     labels:
                       cluster: 'practice-cluster'
         alertmanager:
           enabled: true
+          annotations:
+            cluster: "practice-cluster"
         nodeExporter:
           enabled: false
+        prometheus-node-exporter:
+          prometheus:
+            relabelings:
+              - source_labels: [__name__]
+                regex: "(.*)"
+                target_label: cluster
+                replacement: "personal-cluster"
+                action: labelmap
+        kube-state-metrics:
+          prometheus:
+            relabelings:
+              - source_labels: [__name__]
+                regex: "(.*)"
+                target_label: cluster
+                replacement: "personal-cluster"
+                action: labelmap
         grafana:
           env:
             GF_AUTH_GITHUB_ENABLED: "true"
