@@ -34,18 +34,34 @@ redis:
     enabled: true
   metrics:
     enabled: true
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/cluster: "local-cluster"
 server:
   metrics:
     enabled: true
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/cluster: "local-cluster"
 controller:
   metrics:
     enabled: true
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/cluster: "local-cluster"
 notifications:
   logLevel: "debug"
   secret:
     create: false
   metrics:
     enabled: true
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/cluster: "local-cluster"
   notifiers:
     service.slack: |
       token: $slack-token
