@@ -22,6 +22,8 @@ spec:
           prometheusSpec:
             remoteWrite:
               - url: https://thanos.rajesh-kumar.in/api/v1/receive
+                remote_labels:
+                  - cluster: "practice-cluster"
                 basicAuth:
                   username:
                     name: grafana-creds-secret
