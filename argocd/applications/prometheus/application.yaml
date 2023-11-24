@@ -20,7 +20,7 @@ spec:
       values: |-
         prometheus:
           prometheusSpec:
-            external_labels:
+            externalLabels:
               cluster: "practice-cluster"
             remoteWrite:
               - url: https://thanos.rajesh-kumar.in/api/v1/receive
