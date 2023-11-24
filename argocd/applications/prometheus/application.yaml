@@ -29,35 +29,35 @@ spec:
                   password:
                     name: grafana-creds-secret
                     key: thanos_receive_pass
-            serviceMonitorSelector:
-              matchLabels:
-                prometheus: argo-cd-grafana
             additionalScrapeConfigs: |
-              - job_name: 'argocd'
-                scrape_interval: 30s
-                scrape_timeout: 10s
-                static_configs:
-                  - targets: ['argo-argocd-application-controller-metrics.argo.svc.cluster.local:8082', 'argo-argocd-redis-metrics.argo.svc.cluster.local:9121']
               - job_name: 'alertManager'
                 scrape_interval: 30s
                 scrape_timeout: 10s
                 static_configs:
                   - targets: ['alertmanager-operated.prometheus.svc.cluster.local:9093']
+                    labels:
+                      job: 'alertmanager practice-cluster'
               - job_name: 'nodeExporter'
                 scrape_interval: 30s
                 scrape_timeout: 10s
                 static_configs:
                   - targets: ['prometheus-node-exporter.prometheus.svc.cluster.local:9100']
+                    labels:
+                      job: 'nodeexporter-practice-cluster'
               - job_name: 'kubeMetrics'
                 scrape_interval: 30s
                 scrape_timeout: 10s
                 static_configs:
                   - targets: ['kube-prometheus-stack-kube-state-metrics.prometheus.svc.cluster.local:8080']
+                    labels:
+                      job: 'kubemetric-practice-cluster'
               - job_name: 'NeuVector'
                 scrape_interval: 30s
                 scrape_timeout: 10s
                 static_configs:
                   - targets: ['neuvector-prometheus-exporter.cattle-neuvector-system.svc.cluster.local:8068']
+                    labels:
+                      job: 'neuvector-practice-cluster'
         alertmanager:
           enabled: true
         nodeExporter:
@@ -80,7 +80,7 @@ spec:
           grafana.ini:
             server:
               root_url: "https://grafana.rajesh-kumar.in"
-          defaultDashboardsEnabled: true
+          defaultDashboardsEnabled: false
           defaultDashboardsTimezone: browser
           admin:
             existingSecret: grafana-creds-secret
