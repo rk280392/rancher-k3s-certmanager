@@ -32,11 +32,18 @@ spec:
                     name: grafana-creds-secret
                     key: thanos_receive_pass
             additionalScrapeConfigs: |
-              - job_name: 'practice-cluster-metrics'
+              - job_name: 'neuvector-practice-cluster'
                 scrape_interval: 30s
                 scrape_timeout: 10s
                 static_configs:
                   - targets: ['neuvector-prometheus-exporter.cattle-neuvector-system.svc.cluster.local:8068']
+                    labels:
+                      cluster: 'practice-cluster'
+              - job_name: 'node'
+                scrape_interval: 30s
+                scrape_timeout: 10s
+                static_configs:
+                  - targets: ['prometheus-node-exporter.prometheus.svc.cluster.local:9100']
                     labels:
                       cluster: 'practice-cluster'
         alertmanager:
