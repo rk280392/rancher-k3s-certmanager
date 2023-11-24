@@ -20,6 +20,10 @@ spec:
         value: "thanos-obj-secret"
       - name: "metrics.enabled"
         value: "true"
+      - name: "metrics.prometheusRule.enabled"
+        value: "true"
+      - name: "metrics.prometheusRule.namespace"
+        value: "prometheus"
   syncPolicy:
     automated:
       prune: true
