@@ -22,8 +22,6 @@ spec:
           prometheusSpec:
             remoteWrite:
               - url: https://thanos.rajesh-kumar.in/api/v1/receive
-                remote_labels:
-                  - cluster: "practice-cluster"
                 basicAuth:
                   username:
                     name: grafana-creds-secret
@@ -32,34 +30,13 @@ spec:
                     name: grafana-creds-secret
                     key: thanos_receive_pass
             additionalScrapeConfigs: |
-              - job_name: 'alertManager'
+              - job_name: 'practice-cluster-metrics'
                 scrape_interval: 30s
                 scrape_timeout: 10s
                 static_configs:
-                  - targets: ['alertmanager-operated.prometheus.svc.cluster.local:9093']
+                  - targets: ['alertmanager-operated.prometheus.svc.cluster.local:9093','prometheus-node-exporter.prometheus.svc.cluster.local:9100','kube-prometheus-stack-kube-state-metrics.prometheus.svc.cluster.local:8080','neuvector-prometheus-exporter.cattle-neuvector-system.svc.cluster.local:8068']
                     labels:
-                      job: 'alertmanager practice-cluster'
-              - job_name: 'nodeExporter'
-                scrape_interval: 30s
-                scrape_timeout: 10s
-                static_configs:
-                  - targets: ['prometheus-node-exporter.prometheus.svc.cluster.local:9100']
-                    labels:
-                      job: 'nodeexporter-practice-cluster'
-              - job_name: 'kubeMetrics'
-                scrape_interval: 30s
-                scrape_timeout: 10s
-                static_configs:
-                  - targets: ['kube-prometheus-stack-kube-state-metrics.prometheus.svc.cluster.local:8080']
-                    labels:
-                      job: 'kubemetric-practice-cluster'
-              - job_name: 'NeuVector'
-                scrape_interval: 30s
-                scrape_timeout: 10s
-                static_configs:
-                  - targets: ['neuvector-prometheus-exporter.cattle-neuvector-system.svc.cluster.local:8068']
-                    labels:
-                      job: 'neuvector-practice-cluster'
+                      cluster: 'practice-cluster'
         alertmanager:
           enabled: true
         nodeExporter:
