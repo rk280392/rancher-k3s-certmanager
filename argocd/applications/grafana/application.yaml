@@ -26,6 +26,10 @@ spec:
           config:
             server:
               root_url: "https://grafana.rajesh-kumar.in"
+            security:
+              admin_user: "{{ .GF_SECURITY_ADMIN_USER }} "
+              admin_password: "{{ .GF_SECURITY_ADMIN_PASSWORD }}"
+
     chart: grafana-operator 
   syncPolicy:
     syncOptions:
