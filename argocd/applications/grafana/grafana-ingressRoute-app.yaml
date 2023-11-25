@@ -6,11 +6,11 @@ metadata:
 spec:
   project: default
   destination:
-    namespace: prometheus
+    namespace: monitoring
     name: practice-cluster
   source:
     repoURL: https://github.com/rk280392/rancher-k3s-certmanager.git
-    path: argocd/applications/prometheus/ingressRoute
+    path: argocd/applications/grafana/ingressRoute
     targetRevision: main
   syncPolicy:
     automated:

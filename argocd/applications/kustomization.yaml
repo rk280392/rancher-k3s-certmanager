@@ -5,6 +5,7 @@ resources:
 - grafana/application.yaml
 - grafana/grafana-env-cm.yaml
 - grafana/grafana-external-secret.yaml
+- grafana/grafana-ingressRoute-app.yaml
 - loki-app/application.yaml
 - neuvector/neuvector-application.yaml
 - neuvector/nv-external-secret-app.yaml
