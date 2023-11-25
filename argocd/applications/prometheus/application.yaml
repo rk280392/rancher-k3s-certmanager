@@ -33,10 +33,13 @@ spec:
           configReloader:
             service:
               enabled: true
-            serviceMonitor:
-              enabled: true
     chart: kube-prometheus
   syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - Replace=true
     automated:
       prune: true
       selfHeal: true
