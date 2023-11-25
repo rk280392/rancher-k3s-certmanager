@@ -43,7 +43,7 @@ spec:
                 scrape_interval: 30s
                 scrape_timeout: 10s
                 static_configs:
-                  - targets: ['prometheus-node-exporter.prometheus.svc.cluster.local:9100']
+                  - targets: ['kubernetes.io/hostname:9100']
                     labels:
                       cluster: 'practice-cluster'
         alertmanager:
