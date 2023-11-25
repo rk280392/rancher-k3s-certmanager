@@ -1,12 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
-- prom-operator-crds/application.yaml
 - prometheus/application.yaml
-- node-exporter/application.yaml
-- grafana-dashboards/argo-cd.yaml
-- prometheus/grafana-external-secret.yaml
+- grafana/application.yaml
+- grafana/grafana-env-cm.yaml
+- grafana/grafana-external-secret.yaml
 - loki-app/application.yaml
 - neuvector/neuvector-application.yaml
 - neuvector/nv-external-secret-app.yaml

@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: argo
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  labels:
+    release: kube-prometheus
+spec:
+  destination:
+    name: practice-cluster
+    namespace: monitoring
+  project: default
+  source:
+    repoURL: 'https://charts.bitnami.com/bitnami'
+    targetRevision: 8.22.5
+    helm:
+      values: |-
+        clusterDomain: practice-cluster.local
+        prometheus:
+          externalLabels:
+            cluster: "practice-cluster"
+          remoteWrite:
+            - url: https://thanos.rajesh-kumar.in/api/v1/receive
+              basicAuth:
+                username:
+                  name: grafana-creds-secret
+                  key: thanos_receive_user
+                password:
+                  name: grafana-creds-secret
+                  key: thanos_receive_pass
+          configReloader:
+            service:
+              enabled: true
+            serviceMonitor:
+              enabled: true
+    chart: kube-prometheus
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
